@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calculating Area - Vue.js in Action</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+
+<body class="container">
+
+  <div id="app">
+    <p>
+      Area is equal to: {{ area }}
+    </p>
+    <p>
+      <button v-on:click="length += 1">Add length</button>
+      <button v-on:click="width += 1">Add width</button>
+    </p>
+  </div>
+
+  <script type="text/javascript">
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        length: 5,
+        width: 3
+      },
+      computed: {
+        area: function() {
+          return this.width * this.length;
+        }
+      },
+      watch: {
+        length: function(newVal, oldVal) {
+          console.log('The old value of length was: ' + oldVal + '\nThe new value of length is: ' + newVal);
+        },
+        width: function(newVal, oldVal) {
+          console.log('The old value of width was: ' + oldVal + '\nThe new value of width is: ' + newVal);
+        },
+        area: function(newVal, oldVal) {
+          console.log('The old value of area was: ' + oldVal + '\nThe new value of area is: ' + newVal);
+        },
+      },
+      beforeUpdate: function() {
+        console.log('All those data changes happened ' + 'before the output gets updated.');
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
