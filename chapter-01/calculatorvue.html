@@ -15,7 +15,7 @@
       <p>= <span v-text="result"></span></p>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <script type="text/javascript">
       function isNotNumbericValue(value) {
         return isNaN(value) || !isFinite(value);
@@ -27,11 +27,11 @@
           computed: {
             result: function() {
               let x = parseFloat(this.x);
-              if(isNotNumericValue(x))
+              if(isNotNumbericValue(x))
               return this.lastResult;
 
               let y = parseFloat(this.y);
-              if(isNotNumericValue(y))
+              if(isNotNumbericValue(y))
               return this.lastResult;
 
               this.lastResult = x + y;
