@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="container">
+
+  <div id="app">
+    <div class="container">
+      {{counter}} <br/>
+      <button v-on:click="incrementCounter">Increment Counter</button>
+      <my-component v-on:increment-me="incrementCounter"></my-component>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    const MyComponent = {
+      template: `<div><button v-on:click="childIncrementCounter">Increment From Child</button></div>`,
+      methods: {
+        childIncrementCounter() {
+          this.$emit('increment-me');
+        }
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'myComponent': MyComponent,
+      },
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        incrementCounter() {
+          this.counter++;
+        }
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
