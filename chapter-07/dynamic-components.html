@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+</head>
+
+<body class="container">
+
+  <div id="app">
+    <button v-on:click="cycle">Cycle</button>
+    <h1>
+      <component v-bind:is="currentView"></component>
+    </h1>
+  </div>
+
+  <script type="text/javascript">
+    const BookComponent = {
+      template: `
+      <div>
+        Book Component
+      </div>
+      `,
+    }
+    const FormComponent = {
+      template: `
+      <div>
+        Form Component
+      </div>
+      `
+    }
+    const HeaderComponent = {
+      template: `
+      <div>
+        Header Component
+      </div>
+      `
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'book-component': BookComponent,
+        'form-component': FormComponent,
+        'header-component': HeaderComponent,
+      },
+      data() {
+        return {
+          currentView: BookComponent
+        }
+      },
+      methods: {
+        cycle() {
+          if(this.currentView === HeaderComponent)
+            this.currentView = BookComponent
+          else 
+            this.currentView = this.currentView === BookComponent ? FormComponent : HeaderComponent;
+        }
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
